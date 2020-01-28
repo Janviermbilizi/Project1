@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <title>Traveler</title>
     <!--Compiled and minified jquery-->
     <script
@@ -24,20 +25,31 @@
   </head>
   <body>
     <!--html codes should start here!-->
-   <div class="container">
+   <div class="container"><br>
     <!-- City Search Input -->
+    <div class="headerBlock">
+      <h3>TRAVELER</h3>
     <div class="row">
-      <div class="col s4 card">
-        <form>
-        <input class="form-control mr-sm-2" type="search" id="search-input" placeholder="Search"
-        aria-label="Search">
-        <button class="btn waves-effect waves-light" type="submit" id="search">Search</button>
-        </form>
+      <div class="search-wrapper">
+        <input type="search" id="search-input" placeholder="Put your next destination city name..">
+        <button class="btn waves-effect waves-light" type="submit" id="search">
+          <i class="fa fa-search"></i>
+        </button>
+       
       </div>
     </div>
+  </div>
     <div class="row">
-      <div class="col s8 teal lighten-2">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam venenatis, leo et feugiat auctor, justo sem varius purus, et viverra sem lorem aliquet purus. Fusce ornare est eget lacus porta, quis blandit arcu fringilla. Sed ut lectus semper, euismod elit eu, blandit magna. Phasellus commodo ornare nunc ut tempus. Sed fringilla lacus tellus, vitae vestibulum mauris dignissim in. Donec facilisis diam ut aliquet posuere. Suspendisse non elit et risus consequat imperdiet. Quisque sed sem fermentum, sollicitudin tortor sed, tempor nisl. Cras magna mauris, commodo vel odio in, consequat faucibus erat. Interdum et malesuada fames ac ante ipsum primis in faucibus. Proin arcu sem, facilisis vel enim in, elementum ullamcorper nisl. Vestibulum vel lectus scelerisque, molestie justo sed, eleifend ipsum. Maecenas id lectus lacinia, faucibus ipsum at, facilisis diam. Aenean efficitur tristique odio, aliquam mollis massa dictum in. Curabitur finibus, orci vitae iaculis accumsan, nisl tortor euismod enim, eget dictum neque justo nec eros. Suspendisse suscipit fermentum eros, quis aliquam est suscipit sed.
+      <!-- Checklist field -->
+      <div class="col s8 color">
+        <div class ="todos input-field">
+          <form id ="todoform" method="POST">
+            <label for ="todo-text"> Your Checklist :</label>
+            <input class="inputField" type="text" placeholder="Needs to be done before you take a trip.." name ="todo-text" id="todo-text"/>
+          </form>
+          <div  class="divBox" id="todo-list">
+          </div>
+        </div>
 
       </div>
       <div class="col s4 teal lighten-2">

@@ -1,0 +1,64 @@
+body {
+    height: 100vh;
+    background-image: url(../images/antique-antique-globe-antique-shop-antique-store-414916.jpg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size:cover;
+ 
+    }
+
+.headerBlock{
+    margin-top: 25px;
+    background-color: whitesmoke;
+    opacity: 0.75;
+}
+h3{
+    text-align: center;
+   color: #305d58;
+    padding-top: 10px;
+    text-shadow: 1px 1px 0 rgb(240, 209, 38);
+}
+.active{
+ font-size: 20px;   
+ padding-top: 15px;
+color: rgb(16, 75, 67);
+}
+.search-wrapper{
+    padding:20px;
+}
+
+
+  .input-field input[type=text]:focus {
+      background-color: rgb(250, 253, 228);
+    border-bottom: 1px solid #000;
+    box-shadow: 0 1px 0 0 rgb(0, 0, 0);
+    color:black;
+  }
+ 
+.color{
+    background-color: rgb(231, 164, 62);
+}
+.strikethrough:checked + span{
+    /* color:black; */
+    text-decoration:line-through
+  }
+.divBox{
+    padding-bottom: 10px;
+}  
+.todoBox{
+    height: 50px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 5px;
+    padding-left: 10px;
+    /* background-color: #f1ce6d; */
+    background-color: #ffd791;
+    color: white;
+    font-size: 1.5em;
+    line-height: 1.5;
+}
+label{
+    /* color:white; */
+    color: #305d58;
+    
+}
