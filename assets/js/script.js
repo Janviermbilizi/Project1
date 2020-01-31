@@ -73,39 +73,51 @@ $(document).ready(function() {
   $("#search").on("click", function() {
     event.preventDefault();
     console.log("button was clicked");
-    let cityInput = $('#search-input').val();
+    let cityInput = $("#search-input").val();
     console.log(cityInput);
-    
-    
+
     let corsURL = "https://cors-anywhere.herokuapp.com/";
     var myKey = config.MY_KEY;
-    let queryURL = corsURL + "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + cityInput + "+attraction&key=" + myKey;
+    let queryURL =
+      corsURL +
+      "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" +
+      cityInput +
+      "+attraction&key=" +
+      myKey;
     console.log(queryURL);
-    
+
     //ajax call for Google Place(queryURL)
     $.ajax({
       url: queryURL,
       method: "GET"
-    }).then(function (response) {
+    }).then(function(response) {
       console.log(response);
-      
-      
+
       localStorage.setItem("city search", cityInput);
       var citySearchStore = localStorage.getItem("city search");
-      
+
       //making the photo reference URL
       let photoRef = response.results[0].photos[0].photo_reference;
       let photoRef1 = response.results[1].photos[0].photo_reference;
       let photoRef2 = response.results[2].photos[0].photo_reference;
       console.log(photoRef);
-      let photoURL = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=310&photoreference=" + photoRef + "&key=AIzaSyATrEzyvsK5KT2oZryXoBBUnN-zG70758M";
-      let photoURL2 = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=310&photoreference=" + photoRef1 + "&key=AIzaSyATrEzyvsK5KT2oZryXoBBUnN-zG70758M";
-      let photoURL3 = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=310&photoreference=" + photoRef2 + "&key=AIzaSyATrEzyvsK5KT2oZryXoBBUnN-zG70758M";
-      
+      let photoURL =
+        "https://maps.googleapis.com/maps/api/place/photo?maxwidth=310&photoreference=" +
+        photoRef +
+        "&key=AIzaSyATrEzyvsK5KT2oZryXoBBUnN-zG70758M";
+      let photoURL2 =
+        "https://maps.googleapis.com/maps/api/place/photo?maxwidth=310&photoreference=" +
+        photoRef1 +
+        "&key=AIzaSyATrEzyvsK5KT2oZryXoBBUnN-zG70758M";
+      let photoURL3 =
+        "https://maps.googleapis.com/maps/api/place/photo?maxwidth=310&photoreference=" +
+        photoRef2 +
+        "&key=AIzaSyATrEzyvsK5KT2oZryXoBBUnN-zG70758M";
+
       console.log(photoURL);
       console.log(photoURL2);
       console.log(photoURL3);
-      
+
       //posting the images from the photo reference url to the Div's
       let cardImg1 = $("<img>");
       cardImg1.attr("src", photoURL);
@@ -113,10 +125,16 @@ $(document).ready(function() {
       cardImg2.attr("src", photoURL2);
       let cardImg3 = $("<img>");
       cardImg3.attr("src", photoURL3);
-      $("#card-image1").empty().append(cardImg1);
-      $("#card-image2").empty().append(cardImg2);
-      $("#card-image3").empty().append(cardImg3);
-      
+      $("#card-image1")
+        .empty()
+        .append(cardImg1);
+      $("#card-image2")
+        .empty()
+        .append(cardImg2);
+      $("#card-image3")
+        .empty()
+        .append(cardImg3);
+
       //making the name reference URL
       let nameRef = response.results[0].name;
       let nameRef1 = response.results[1].name;
@@ -126,10 +144,6 @@ $(document).ready(function() {
       $("#card-content1").text(nameRef);
       $("#card-content2").text(nameRef1);
       $("#card-content3").text(nameRef2);
-      
     });
   });
-    }); 
-  
-
-  
+});
