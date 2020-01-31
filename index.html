@@ -31,15 +31,20 @@
     <div class="container">
       <br />
       <!-- City Search Input -->
+      
       <div class="headerBlock">
         <h3>TRAVELER</h3>
         <div class="row">
+          <form>
           <div class="search-wrapper">
+            <div class="input-field col s8">
             <input
               type="search"
               id="search-input"
               placeholder="Put your next destination city name.."
             />
+            </div>
+            <div class="input-field col s3">
             <button
               class="btn waves-effect waves-light"
               type="submit"
@@ -47,13 +52,18 @@
             >
               <i class="fa fa-search"></i>
             </button>
+            </div>
+          
+            
           </div>
+          </form>
         </div>
       </div>
+
       <div class="row">
         <!-- Checklist field -->
-        <div class="col s8 color">
-          <div class="todos input-field">
+        <div class="col s7 orange lighten-2">
+          <div class="todos input-field card-panel color">
             <form id="todoform" method="POST">
               <label for="todo-text"> Your Checklist :</label>
               <input
@@ -68,9 +78,9 @@
           </div>
         </div>
         <!-- weather html parts -->
-        <div class="col s4 teal lighten-2">
-          <div id="todayWeather">
-            <h5 class="current-city">City (Month DD, YYYY)</h5>
+        <div class="col s4 teal lighten-2 ">
+          <div id="todayWeather" class="card-panel teal ">
+            <h5 class="current-city">City: </h5>
             <p id="temp">Tempeture:</p>
             <p id="hum">Humidity:</p>
             <p id="windy">Windy speed:</p>

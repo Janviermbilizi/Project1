@@ -41,6 +41,7 @@ $(document).ready(function() {
 
     renderTodos();
   });
+
   //Weather content
   $("#search").on("click", function(event) {
     event.preventDefault();
@@ -64,4 +65,8 @@ $(document).ready(function() {
       $("#search-input").val("");
     });
   });
+
+
+
+  
 });
