@@ -69,3 +69,11 @@ label{
     color: #305d58;
     
 }
+
+
+.imageResolved img{
+    object-fit: cover;
+    width: 310px;
+    height: 300px;
+
+}
