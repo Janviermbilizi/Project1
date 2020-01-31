@@ -78,8 +78,8 @@ $(document).ready(function() {
     
     
     let corsURL = "https://cors-anywhere.herokuapp.com/";
-    let apiKey = "+attraction&key=AIzaSyATrEzyvsK5KT2oZryXoBBUnN-zG70758M";
-    let queryURL = corsURL + "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + cityInput + apiKey;
+    var myKey = config.MY_KEY;
+    let queryURL = corsURL + "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + cityInput + "+attraction&key=" + myKey;
     console.log(queryURL);
     
     //ajax call for Google Place(queryURL)
