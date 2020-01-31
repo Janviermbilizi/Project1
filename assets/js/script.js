@@ -65,11 +65,6 @@ $(document).ready(function() {
       $("#search-input").val("");
     });
   });
-});
-
-// Building the URL we need to query the Google Place(queryURL) & Google Places Photos(queryURL2)
-
-$(document).ready(function() {
   $("#search").on("click", function() {
     event.preventDefault();
     console.log("button was clicked");
@@ -146,4 +141,22 @@ $(document).ready(function() {
       $("#card-content3").text(nameRef2);
     });
   });
+
+  //CURRENCY EXCHANGE 
+  function currency() {
+    var queryURL3 = "https://free.currconv.com/api/v7/convert?q=USD_PHP&compact=ultra&apiKey=4ff5af938e7a12f2b755";
+   
+    $.ajax({
+      url: queryURL3,
+      method: "GET"
+    }).then(function (response) {
+     var currencyName = $("<span>").val()
+     
+     console.log(response);
+  });
+    
+  }
+  currency();
 });
+
+
