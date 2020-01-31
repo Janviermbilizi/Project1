@@ -10,13 +10,20 @@ body {
 .headerBlock{
     margin-top: 25px;
     background-color: whitesmoke;
-    opacity: 0.75;
+    opacity: 0.87;
 }
 h3{
     text-align: center;
    color: #305d58;
     padding-top: 10px;
     text-shadow: 1px 1px 0 rgb(240, 209, 38);
+}
+.row .col.s4 {
+    margin-left:40px;
+}
+.row .col.s8{
+    margin-left: 50px;
+    padding-bottom: 10px;
 }
 .active{
  font-size: 20px;   
