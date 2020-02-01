@@ -172,7 +172,7 @@ function airoportSearch(cityInput){
       var airportList = $("<li>").text(airportName);
       var airoprtPhoneSpot = $("<button>").addClass("btn");
       console.log("air :" + air);
-      airoprtPhoneSpot.text("Visit Airiport site");
+      airoprtPhoneSpot.text("Visit Airport site");
       airportList.append(airoprtPhoneSpot);
       $("#airoprt").append(airportList);
 
@@ -196,8 +196,11 @@ function airoportURL (airoportCode){
   }
   
   $.ajax(settings).done(function (response) {
+    console.log(response)
+    var airportNewName =response.name;
     var airoprtWebsite = response.website;
     var airoprtPhone = response.phone;
+    console.log(airportNewName);
     console.log(airoprtWebsite);
     console.log(airoprtPhone);
     return airoprtPhone;
