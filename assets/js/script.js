@@ -1,3 +1,5 @@
+var MaxError = 0;
+
 $(document).ready(function () {
   $("#search").on("click", function () {
     event.preventDefault();
@@ -11,24 +13,26 @@ $(document).ready(function () {
   var todos = ["Book a hotel", "Rent a car", "Download a map"];
   renderTodos();
 
-  // create a check list
+  // CREATE CHECKLIST
   function renderTodos() {
+
     $("#todo-list").empty();
     for (i = 0; i < todos.length; i++) {
       var lableDiv = $("<div>").addClass("todoBox");
+      var spanDelete =$("<span>").text("x").addClass("delete");
+      spanDelete.attr("data-id",todos[i]);
       var labelList = $("<label>");
       var lableInput = $("<input>").attr("type", "checkbox");
       lableInput.addClass("strikethrough");
       var lableSpan = $("<span>").text(todos[i]);
-      lableDiv.append(labelList);
+      lableDiv.append(labelList,spanDelete);
       labelList.append(lableInput, lableSpan);
       $("#todo-list").append(lableDiv);
     }
   }
-  // add new element to checklist
+  // ADD NEW ELEMENT TO CHECKLIST
   $("#todoform").on("submit", function (event) {
     event.preventDefault();
-
     var todoInput = $("#todo-text")
       .val()
       .trim();
@@ -36,13 +40,26 @@ $(document).ready(function () {
       return;
     }
 
-    todos.push(todoInput);
-    todoInput = $("#todo-text").val("");
 
-    renderTodos();
+    $("#todo-text").val("");
+    var lableDiv = $("<div>").addClass("todoBox");
+    var spanDelete =$("<span>").text("x").addClass("delete");
+    spanDelete.attr("data-id",todoInput);
+    var labelList = $("<label>");
+    var lableInput = $("<input>").attr("type", "checkbox");
+    lableInput.addClass("strikethrough");
+    var lableSpan = $("<span>").text(todoInput);
+    lableDiv.append(labelList,spanDelete);
+    labelList.append(lableInput, lableSpan);
+    $("#todo-list").append(lableDiv);
   });
 
-  //Weather content
+  $("body").on("click", ".delete", function(){
+   
+    $(this).parent().hide("slow");
+  });
+
+  // WEATHER CONTENT
   $("#search").on("click", function (event) {
     event.preventDefault();
     var cityInput = $("#search-input").val();
@@ -58,10 +75,10 @@ $(document).ready(function () {
       var icon = $("<img>");
       var iconImg = response.weather[0].icon;
       icon.attr("src", "https://openweathermap.org/img/wn/" + iconImg + "@2x.png");
-      icon.attr("width",100);
+      icon.attr("width", 100);
       $("#icon").html(icon);
       $(".current-city").html(response.name);
-     
+
       $("#date").text(currentDate);
       $("#temp").text("Tempeture : " + response.main.temp + " °F");
       $("#hum").text("Humidity: " + response.main.humidity + " %");
@@ -149,65 +166,65 @@ $(document).ready(function () {
   });
 
 
-function airoportSearch(cityInput){
-  var settings = {
-    "async": true,
-    "crossDomain": true,
-    "url": "https://cometari-airportsfinder-v1.p.rapidapi.com/api/airports/by-text?text=" + cityInput,
-    "method": "GET",
-    "headers": {
-      "x-rapidapi-host": "cometari-airportsfinder-v1.p.rapidapi.com",
-      "x-rapidapi-key": "6d5cf5c180mshb8b063a3d796c01p16a795jsnc128322bf4f8"
+  function airoportSearch(cityInput) {
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": "https://cometari-airportsfinder-v1.p.rapidapi.com/api/airports/by-text?text=" + cityInput,
+      "method": "GET",
+      "headers": {
+        "x-rapidapi-host": "cometari-airportsfinder-v1.p.rapidapi.com",
+        "x-rapidapi-key": "6d5cf5c180mshb8b063a3d796c01p16a795jsnc128322bf4f8"
+      }
     }
+
+    $.ajax(settings).done(function (response) {
+   
+      $("#airoprt").empty();
+      var i = 0;
+      var airoportCode = response[i].code;
+      if(!airoportCode )alert("could not load the airport info")
+      var air = airoportURL(airoportCode);
+    }).fail( function(e){
+      console.log( 'Error loading airpott info')
+      MaxError ++;
+      $("#airoprt").html("<h6>Loading...</h6>")
+       setTimeout( ()=>{
+        if(MaxError < 4 ) airoportSearch(cityInput )
+       }, 5000 )
+    });
   }
 
-  $.ajax(settings).done(function (response) {
-    console.log(response);
-    $("#airoprt").empty();
-    for (i = 0; i < response.length; i++) {
-      var airportName = response[i].name;
-      var airoportCode = response[i].code;
-      var air = airoportURL (airoportCode);
+  function airoportURL(airoportCode) {
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": "https://airport-info.p.rapidapi.com/airport?iata=" + airoportCode,
+      "method": "GET",
+      "headers": {
+        "x-rapidapi-host": "airport-info.p.rapidapi.com",
+        "x-rapidapi-key": "6d5cf5c180mshb8b063a3d796c01p16a795jsnc128322bf4f8"
+      }
+    }
+
+    $.ajax(settings).done(function (response) {
       
-      var airportList = $("<li>").text(airportName);
-      var airoprtPhoneSpot = $("<button>").addClass("btn");
-      console.log("air :" + air);
-      airoprtPhoneSpot.text("Visit Airport site");
-      airportList.append(airoprtPhoneSpot);
+      var airportNewName = response.name;
+      var airoprtWebsite = response.website;
+
+      var airportList = $("<li>").text(airportNewName);
+      var airoprtUrlSpot = $("<a>").addClass("btn");
+
+      airoprtUrlSpot.text("Visit Airport site");
+      airoprtUrlSpot.attr("href", airoprtWebsite).attr("target", "_blank");
+
+      airportList.append(airoprtUrlSpot);
       $("#airoprt").append(airportList);
 
-      console.log(airportName);
-
-    }
-  
-  });
-}
-
-function airoportURL (airoportCode){
-  var settings = {
-    "async": true,
-    "crossDomain": true,
-    "url": "https://airport-info.p.rapidapi.com/airport?iata=" + airoportCode,
-    "method": "GET",
-    "headers": {
-      "x-rapidapi-host": "airport-info.p.rapidapi.com",
-      "x-rapidapi-key": "6d5cf5c180mshb8b063a3d796c01p16a795jsnc128322bf4f8"
-    }
+    });
   }
-  
-  $.ajax(settings).done(function (response) {
-    console.log(response)
-    var airportNewName =response.name;
-    var airoprtWebsite = response.website;
-    var airoprtPhone = response.phone;
-    console.log(airportNewName);
-    console.log(airoprtWebsite);
-    console.log(airoprtPhone);
-    return airoprtPhone;
-  });
-}
- 
 
-  });
+
+});
 
 
