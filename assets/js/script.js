@@ -123,15 +123,15 @@ $(document).ready(function () {
       let photoURL =
         "https://maps.googleapis.com/maps/api/place/photo?maxwidth=310&photoreference=" +
         photoRef +
-        "&key=AIzaSyATrEzyvsK5KT2oZryXoBBUnN-zG70758M";
+        "&key=" + myKey;
       let photoURL2 =
         "https://maps.googleapis.com/maps/api/place/photo?maxwidth=310&photoreference=" +
         photoRef1 +
-        "&key=AIzaSyATrEzyvsK5KT2oZryXoBBUnN-zG70758M";
+        "&key=" + myKey;
       let photoURL3 =
         "https://maps.googleapis.com/maps/api/place/photo?maxwidth=310&photoreference=" +
         photoRef2 +
-        "&key=AIzaSyATrEzyvsK5KT2oZryXoBBUnN-zG70758M";
+        "&key=" + myKey;
 
       //posting the images from the photo reference url to the Div's
       let cardImg1 = $("<img>");
