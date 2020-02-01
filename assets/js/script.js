@@ -1,5 +1,5 @@
-$(document).ready(function() {
-  $("#search").on("click", function() {
+$(document).ready(function () {
+  $("#search").on("click", function () {
     event.preventDefault();
     console.log("button was clicked");
     var cityInput = $("#search-input").val();
@@ -26,7 +26,7 @@ $(document).ready(function() {
     }
   }
   // add new element to checklist
-  $("#todoform").on("submit", function(event) {
+  $("#todoform").on("submit", function (event) {
     event.preventDefault();
 
     var todoInput = $("#todo-text")
@@ -43,7 +43,7 @@ $(document).ready(function() {
   });
 
   //Weather content
-  $("#search").on("click", function(event) {
+  $("#search").on("click", function (event) {
     event.preventDefault();
     var cityInput = $("#search-input").val();
     var currentDate = moment().format("LL");
@@ -54,8 +54,15 @@ $(document).ready(function() {
       "&units=imperial&appid=" +
       apiKey;
     //get API data
-    $.ajax({ url: queryURL, type: "GET" }).then(function(response) {
-      $(".current-city").text(cityInput + " (" + currentDate + ")");
+    $.ajax({ url: queryURL, type: "GET" }).then(function (response) {
+      var icon = $("<img>");
+      var iconImg = response.weather[0].icon;
+      icon.attr("src", "https://openweathermap.org/img/wn/" + iconImg + "@2x.png");
+      icon.attr("width",100);
+      $("#icon").html(icon);
+      $(".current-city").html(response.name);
+     
+      $("#date").text(currentDate);
       $("#temp").text("Tempeture : " + response.main.temp + " °F");
       $("#hum").text("Humidity: " + response.main.humidity + " %");
       $("#windy").text("Wind Speed: " + response.wind.speed + " MPH");
@@ -65,11 +72,13 @@ $(document).ready(function() {
       $("#search-input").val("");
     });
   });
-  $("#search").on("click", function() {
+
+  // ATTRACTIONS
+  $("#search").on("click", function () {
     event.preventDefault();
-    console.log("button was clicked");
+
     let cityInput = $("#search-input").val();
-    console.log(cityInput);
+
 
     let corsURL = "https://cors-anywhere.herokuapp.com/";
     var myKey = config.MY_KEY;
@@ -79,14 +88,12 @@ $(document).ready(function() {
       cityInput +
       "+attraction&key=" +
       myKey;
-    console.log(queryURL);
 
-    //ajax call for Google Place(queryURL)
     $.ajax({
       url: queryURL,
       method: "GET"
-    }).then(function(response) {
-      console.log(response);
+    }).then(function (response) {
+
 
       localStorage.setItem("city search", cityInput);
       var citySearchStore = localStorage.getItem("city search");
@@ -95,7 +102,7 @@ $(document).ready(function() {
       let photoRef = response.results[0].photos[0].photo_reference;
       let photoRef1 = response.results[1].photos[0].photo_reference;
       let photoRef2 = response.results[2].photos[0].photo_reference;
-      console.log(photoRef);
+
       let photoURL =
         "https://maps.googleapis.com/maps/api/place/photo?maxwidth=310&photoreference=" +
         photoRef +
@@ -108,10 +115,6 @@ $(document).ready(function() {
         "https://maps.googleapis.com/maps/api/place/photo?maxwidth=310&photoreference=" +
         photoRef2 +
         "&key=AIzaSyATrEzyvsK5KT2oZryXoBBUnN-zG70758M";
-
-      console.log(photoURL);
-      console.log(photoURL2);
-      console.log(photoURL3);
 
       //posting the images from the photo reference url to the Div's
       let cardImg1 = $("<img>");
@@ -139,24 +142,69 @@ $(document).ready(function() {
       $("#card-content1").text(nameRef);
       $("#card-content2").text(nameRef1);
       $("#card-content3").text(nameRef2);
+
+      airoportSearch(cityInput);
+
     });
   });
 
-  //CURRENCY EXCHANGE 
-  function currency() {
-    var queryURL3 = "https://free.currconv.com/api/v7/convert?q=USD_PHP&compact=ultra&apiKey=4ff5af938e7a12f2b755";
-   
-    $.ajax({
-      url: queryURL3,
-      method: "GET"
-    }).then(function (response) {
-     var currencyName = $("<span>").val()
-     
-     console.log(response);
-  });
-    
+
+function airoportSearch(cityInput){
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "https://cometari-airportsfinder-v1.p.rapidapi.com/api/airports/by-text?text=" + cityInput,
+    "method": "GET",
+    "headers": {
+      "x-rapidapi-host": "cometari-airportsfinder-v1.p.rapidapi.com",
+      "x-rapidapi-key": "6d5cf5c180mshb8b063a3d796c01p16a795jsnc128322bf4f8"
+    }
   }
-  currency();
-});
+
+  $.ajax(settings).done(function (response) {
+    console.log(response);
+    $("#airoprt").empty();
+    for (i = 0; i < response.length; i++) {
+      var airportName = response[i].name;
+      var airoportCode = response[i].code;
+      var air = airoportURL (airoportCode);
+      
+      var airportList = $("<li>").text(airportName);
+      var airoprtPhoneSpot = $("<button>").addClass("btn");
+      console.log("air :" + air);
+      airoprtPhoneSpot.text("Visit Airiport site");
+      airportList.append(airoprtPhoneSpot);
+      $("#airoprt").append(airportList);
+
+      console.log(airportName);
+
+    }
+  
+  });
+}
+
+function airoportURL (airoportCode){
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "https://airport-info.p.rapidapi.com/airport?iata=" + airoportCode,
+    "method": "GET",
+    "headers": {
+      "x-rapidapi-host": "airport-info.p.rapidapi.com",
+      "x-rapidapi-key": "6d5cf5c180mshb8b063a3d796c01p16a795jsnc128322bf4f8"
+    }
+  }
+  
+  $.ajax(settings).done(function (response) {
+    var airoprtWebsite = response.website;
+    var airoprtPhone = response.phone;
+    console.log(airoprtWebsite);
+    console.log(airoprtPhone);
+    return airoprtPhone;
+  });
+}
+ 
+
+  });
 
 
