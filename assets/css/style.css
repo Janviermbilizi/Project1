@@ -6,6 +6,30 @@ body {
     background-size:cover;
  
     }
+h5,h6,p{color:white}
+.btn{
+    margin-left: 20px;;
+}
+.btn {
+    float: right;
+    border: none;
+    height: 40px;
+    cursor: pointer;
+    color: white;
+    font-size: 1em;
+  }
+.teal.darken-4 {
+    background-color: #004d40 !important;
+    opacity: 0.95;
+}
+.orange.lighten-2 {
+    background-color: #ffb74d !important;
+    opacity: 0.9;
+}
+.cityFont{
+    font-size: 70px;
+    color:white;
+}
 
 .headerBlock{
     margin-top: 25px;
@@ -18,7 +42,7 @@ h3{
     padding-top: 10px;
     text-shadow: 1px 1px 0 rgb(240, 209, 38);
 }
-.row .col.s4 {
+.cardColor {
     margin-left:40px;
 }
 .row .col.s8{
@@ -30,23 +54,23 @@ h3{
  padding-top: 15px;
 color: rgb(16, 75, 67);
 }
-.search-wrapper{
-    padding:20px;
+.move{
+    margin-left: 40px !important;
 }
 
-
-  .input-field input[type=text]:focus {
-      background-color: rgb(250, 253, 228);
+.input-field input[type=text]:focus {
+    background-color: rgb(250, 253, 228);
     border-bottom: 1px solid #000;
     box-shadow: 0 1px 0 0 rgb(0, 0, 0);
     color:black;
   }
  
 .color{
-    background-color: rgb(231, 164, 62);
+    background: rgb(228, 171, 85);
+    
+    
 }
 .strikethrough:checked + span{
-    /* color:black; */
     text-decoration:line-through
   }
 .divBox{
@@ -58,22 +82,39 @@ color: rgb(16, 75, 67);
     margin-bottom: 5px;
     padding: 5px;
     padding-left: 10px;
-    /* background-color: #f1ce6d; */
     background-color: #ffd791;
     color: white;
     font-size: 1.5em;
     line-height: 1.5;
 }
 label{
-    /* color:white; */
-    color: #305d58;
-    
+    color: #305d58; 
 }
-
 
 .imageResolved img{
     object-fit: cover;
     width: 310px;
     height: 300px;
-
+}
+li{
+    height: 50px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 5px;
+    padding-left: 10px;
+    color: white;
+    line-height: 1.5;
+    border-left: 6px solid orange;
+    border-bottom: 1px solid orange;
+    border-radius: 5px;
+}
+.delete{
+    color: red;
+    cursor: pointer;
+    font-weight: 500;
+    padding-right: 0.3em;
+    text-align: right;
+    float: right;
+    padding-right: 10px;
+    opacity: 0.8;
 }
