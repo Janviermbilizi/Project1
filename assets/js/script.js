@@ -98,7 +98,7 @@ $(document).ready(function () {
 
 
     let corsURL = "https://cors-anywhere.herokuapp.com/";
-    var myKey = config.MY_KEY;
+    var myKey = "AIzaSyATrEzyvsK5KT2oZryXoBBUnN-zG70758M";
     let queryURL =
       corsURL +
       "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" +
