@@ -18,9 +18,9 @@ This is only a website and does not need installation. it is currently hosted in
 
 <strong>Usage</strong>
 
-The page is simple, clean, easy to use and undertand. It is like a digital agenda. it provides information in advance about the place where the user is planning to visit and organise the list of things and events that need to be done before and during the trip. When you first load the page, it will provide you an input area for the city your are going to visit and a search button. Type the city and click the search button. Once clicked, different information about the city you entered will appear on the page, such as weather information, image of the city and the nearest Airport to that city(includes a link to the Airport Website). below the search button you will also have a todo list container that you can use to add and delete things that you need to do or you are planing to do before and during your trip.
-<img src="./assets/images/01-02-2020 13-42-37.jpg" width = 300px><br> >
-<img src="./assets/images/01-02-2020 13-46-02.jpg" width = 300px><br> >
+The page is simple, clean, easy to use and undertand. It is like a digital agenda. it provides information in advance about the place where the user is planning to visit and organise the list of things and events that need to be done before and during the trip. When you first load the page, it will provide you an input area for the city your are going to visit and a search button. Type the city and click the search button. Once clicked, different information about the city you entered will appear on the page, such as weather information, image of the city and the nearest Airport to that city(includes a link to the Airport Website). below the search button you will also have a todo list container that you can use to add and delete things that you need to do or you are planing to do before and during your trip.<br>
+<img src="./assets/images/01-02-2020 13-42-37.jpg" width = 300px><br> 
+<img src="./assets/images/01-02-2020 13-46-02.jpg" width = 300px><br> 
 <strong>Support and Contribution</strong>
 
 If you have any question or want to see our Repo, please email us at any of the following emails;janviermbilizi@gmail.com, vhelen0404@gmail.com, cwright489@gmail.com.
